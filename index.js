@@ -13,10 +13,9 @@ class BaseStatus {
       this.name = playerName;
     }
 
-  
     // attack
     attack(target) {
-        this.randomItem()
+        this.randomItem(this.hp)
       if (this.mana > 0) {
         target.hp -= this.atk;
         this.mana--;
@@ -27,17 +26,17 @@ class BaseStatus {
     }
 
     // random item
-    randomItem() {
-        let listItem = ['sword', 'gloves', 'arcticOrb', 'medallionOfTroy', 'knightSPlate'] 
-        // atk +2 , atk +1 , hp == hp , hp +5 , hp +6
+    randomItem(hp) {
+        let listItem = ['sword', 'gloves', 'AmuletOfLongevity', 'medallionOfTroy', 'knightSPlate'] 
+        // atk +2 , atk +1 , hp +30 , hp +5 , hp +6
         let ran = Math.floor(Math.random()*5)
         
         if (listItem[ran] == 'sword') {
             this.atk += 2
         } else if (listItem[ran] == 'gloves') {
             this.atk += 1
-        } else if (listItem[ran] == 'arcticOrb') {
-            this.hp = this.hp  // ทำให้ hp เท่าเดิมหลังโจมตี
+        } else if (listItem[ran] == 'AmuletOfLongevity') {
+            this.hp += 30
         } else if (listItem[ran] == 'medallionOfTroy') {
             this.hp += 5
         } else if (listItem[ran] == 'knightSPlate') {
@@ -94,7 +93,7 @@ class BaseStatus {
   let b = new Fighter("B");
   let c = new Tank("C");
   
-  // fight!              อยากกำหนดเป็น turn
+  // fight!          
   a.attack(b);
   a.attack(b);
   a.attack(b);
